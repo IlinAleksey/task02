@@ -29,7 +29,8 @@ namespace Homework2_1
             myString.Replace('1', 'l');
             Console.WriteLine("Результат замены 1 на l:\n{0}\n", myString);
 
-            int indexFirst = 7, n = 8;
+            int indexFirst = 7;
+            int n = 8;
             myString.Remove(indexFirst, n);
             Console.WriteLine("Результат удаления {0} символов, начиная с позиции {1}:\n{2}\n", n, indexFirst, myString);
 
