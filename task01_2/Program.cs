@@ -15,7 +15,9 @@ namespace Homework2_2
         /// </summary>
         private struct Item : IComparable
         {
-            public int value, index;
+            public int value;
+            public int i;
+            public int j;
             public int CompareTo(Object item)
             {
                 return CompareTo((Item)item);
@@ -32,7 +34,8 @@ namespace Homework2_2
         /// <param name="arr">Двумерный массив</param>
         public static void Fill(int[,] arr)
         {
-            int n = arr.GetLength(0), m = arr.GetLength(1);
+            int n = arr.GetLength(0);
+            int m = arr.GetLength(1);
             for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < m; )
@@ -50,7 +53,8 @@ namespace Homework2_2
         /// <param name="arr">Двумерный массив</param>
         public static void Show(int[,] arr)
         {
-            int n = arr.GetLength(0), m = arr.GetLength(1);
+            int n = arr.GetLength(0);
+            int m = arr.GetLength(1);
             for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < m; j++)
@@ -91,8 +95,12 @@ namespace Homework2_2
         /// <param name="arr">Двумерный массив</param>
         public static void SwapMinWithMax(int[,] arr)
         {
-            int n = arr.GetLength(0), m = arr.GetLength(1);
-            int min = arr[0, 0], max = arr[0, 0], minIndex = 0, maxIndex = 0;
+            int n = arr.GetLength(0);
+            int m = arr.GetLength(1);
+            int min = arr[0, 0];
+            int max = arr[0, 0];
+            int minIndex = 0;
+            int maxIndex = 0;
             for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < m; j++)
@@ -120,7 +128,8 @@ namespace Homework2_2
         /// <returns>Одномерный отсортированный массив</returns>
         private static Item[] CreateSortedArray(int[,] arr)
         {
-            int n = arr.GetLength(0), m = arr.GetLength(1);
+            int n = arr.GetLength(0);
+            int m = arr.GetLength(1);
             Item[] sortedArray = new Item[n * m];
             for (int i = 0; i < n; i++)
             {
@@ -128,7 +137,8 @@ namespace Homework2_2
                 {
                     int index = i * m + j;
                     sortedArray[index].value = arr[i, j];
-                    sortedArray[index].index = index;
+                    sortedArray[index].i = i;
+                    sortedArray[index].j = j;
                 }
             }
             Array.Sort(sortedArray);
@@ -150,8 +160,10 @@ namespace Homework2_2
 
             for (int i = 0; i < k; i++)
             {
-                int minX = sortedArray[i].index / m, minY = sortedArray[i].index % m;
-                int maxX = sortedArray[last - i].index / m, maxY = sortedArray[last - i].index % m;
+                int minX = sortedArray[i].i;
+                int minY = sortedArray[i].j;
+                int maxX = sortedArray[last - i].i;
+                int maxY = sortedArray[last - i].j;
                 arr[minX, minY] = sortedArray[last - i].value;
                 arr[maxX, maxY] = sortedArray[i].value;
             }
@@ -163,7 +175,8 @@ namespace Homework2_2
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            int n = 3, m = 5;
+            int n = 3;
+            int m = 5;
             int[,] numbers = new int[n, m];
             Console.WriteLine("Введите {0} целых чисел (по одному в строке)", n * m);
 
@@ -187,6 +200,8 @@ namespace Homework2_2
             }
             catch (IndexOutOfRangeException)
             { Console.WriteLine("Количество максимумов {0} превышает количество элементов {1}", k, n * m); }
+            Console.WriteLine("Нажмите любую клавишу для завершения");
+            Console.ReadKey();
 
         }
     }

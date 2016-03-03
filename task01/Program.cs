@@ -16,13 +16,14 @@ namespace Homework2_1
             char[] charArray = { 'H', 'e', '1', '1', 'o', ',', ' ', 's', 'y', 'm', 'b', 'o', '1', 's', ' ', 'w', 'o', 'r', '1', 'd', '!' };
 
             Console.WriteLine("Создан массив:");
-            foreach (var item in charArray)
-                Console.Write(item);
-            Console.WriteLine('\n');
-
             StringBuilder myString = new StringBuilder();
-            foreach (char symb in charArray)
-                myString.Append(symb);
+            foreach (var item in charArray)
+            {   
+                Console.Write(item);
+                myString.Append(item);
+            }
+            Console.WriteLine('\n');      
+               
             Console.WriteLine("Создан объект {0}:\n{1}\n", myString.GetType().Name, myString);
 
             myString.Replace('1', 'l');
@@ -35,7 +36,8 @@ namespace Homework2_1
             string newPart = "beautiful ";
             myString.Insert(indexFirst, newPart);
             Console.WriteLine("Результат вставки подстроки \"{0}\", начиная с позиции {1}:\n{2}\n", newPart, indexFirst, myString);
-
+            Console.WriteLine("Нажмите любую клавишу для завершения");
+            Console.ReadKey();
         }
     }
 }
